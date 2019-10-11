@@ -1,0 +1,3770 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    EOF
+    ERROR
+    FLOAT_NUMBER
+    INT_NUMBER
+    KW_FOR_CLOSE
+    OP_LOG_AND
+    OP_LOG_NOT
+    STRING
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_declaracoes
+Rule 2     lista_declaracoes -> declaracao lista_declaracoes
+Rule 3     lista_declaracoes -> declaracao
+Rule 4     declaracao -> expressao KW_END_LINE
+Rule 5     declaracao -> declaracao KW_END_LINE
+Rule 6     declaracao -> declaracao_if KW_END_LINE
+Rule 7     declaracao -> declaracao_for KW_END_LINE
+Rule 8     declaracao -> declaracao_while KW_END_LINE
+Rule 9     declaracao -> declaracao_print
+Rule 10    declaracao -> declaracao_ler KW_END_LINE
+Rule 11    declaracao -> atribuicao KW_END_LINE
+Rule 12    declaracao -> declaracao_variavel_sem_valores KW_END_LINE
+Rule 13    declaracao -> expressao_booleana KW_END_LINE
+Rule 14    declaracao -> declaracao_funcao KW_END_LINE
+Rule 15    declaracao -> retorna KW_END_LINE
+Rule 16    expressao -> expressao OP_ADD expressao
+Rule 17    expressao -> expressao OP_SUB expressao
+Rule 18    expressao -> expressao OP_MUL expressao
+Rule 19    expressao -> expressao OP_DIV expressao
+Rule 20    expressao -> expressao OP_EXP expressao
+Rule 21    expressao -> OP_INC ID
+Rule 22    expressao -> OP_DEC ID
+Rule 23    expressao -> KW_INT
+Rule 24    expressao -> KW_FLOAT
+Rule 25    expressao -> KW_STRING
+Rule 26    expressao -> boolean
+Rule 27    expressao -> expressao_booleana
+Rule 28    expressao -> ID
+Rule 29    expressao_booleana -> expressao OP_LOG_BT_E expressao
+Rule 30    expressao_booleana -> expressao OP_LOG_LT_E expressao
+Rule 31    expressao_booleana -> expressao OP_LOG_EQUAL expressao
+Rule 32    expressao_booleana -> expressao OP_LOG_DIFF expressao
+Rule 33    expressao_booleana -> expressao OP_LOG_LT expressao
+Rule 34    expressao_booleana -> expressao OP_LOG_BT expressao
+Rule 35    expressao_booleana -> expressao OP_LOG_OR expressao
+Rule 36    boolean -> TRUE
+Rule 37    boolean -> FALSE
+Rule 38    atribuicao -> ID OP_ATRIB expressao
+Rule 39    atribuicao -> atribuicao VIRGULA atribuicao
+Rule 40    declaracao_variavel_sem_valores -> tipo ID
+Rule 41    criacao_variavel -> tipo ID OP_ATRIB expressao
+Rule 42    criacao_variaveis -> tipo ID OP_ATRIB expressao VIRGULA atribuicao
+Rule 43    expressao -> PAR_OPEN expressao PAR_CLOSE
+Rule 44    tipo -> KW_INT
+Rule 45    tipo -> KW_BOOLEAN
+Rule 46    tipo -> KW_FLOAT
+Rule 47    tipo -> KW_STRING
+Rule 48    declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+Rule 49    declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+Rule 50    declaracao_print -> KW_PRINT parametros KW_END_LINE
+Rule 51    declaracao_ler -> KW_INPUT ID
+Rule 52    declaracao_for -> KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+Rule 53    declaracao_while -> KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+Rule 54    declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+Rule 55    declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+Rule 56    expressao -> ID KW_FUNC_OPEN_ARGS parametros
+Rule 57    retorna -> KW_RETURN expressao
+Rule 58    parametros -> expressao
+Rule 59    parametros -> parametros VIRGULA parametros
+
+Terminals, with rules where they appear
+
+EM                   : 52
+EOF                  : 
+ERROR                : 
+FACA                 : 52 53
+FALSE                : 37
+FLOAT_NUMBER         : 
+ID                   : 21 22 28 38 40 41 42 51 52 54 55 56
+INT_NUMBER           : 
+KW_BOOLEAN           : 45
+KW_CLOSE             : 48 49 52 53 54 55
+KW_ELSE              : 49
+KW_END_LINE          : 4 5 6 7 8 10 11 12 13 14 15 50
+KW_FLOAT             : 24 46
+KW_FOR_CLOSE         : 
+KW_FOR_OPEN          : 52
+KW_FUNCTION          : 54 55
+KW_FUNC_OPEN         : 54
+KW_FUNC_OPEN_ARGS    : 55 56
+KW_IF                : 48 49
+KW_IF_OPEN           : 48 49
+KW_INPUT             : 51
+KW_INT               : 23 44
+KW_PRINT             : 50
+KW_RETURN            : 57
+KW_STRING            : 25 47
+KW_WHILE             : 53
+OP_ADD               : 16
+OP_ATRIB             : 38 41 42
+OP_DEC               : 22
+OP_DIV               : 19
+OP_EXP               : 20
+OP_INC               : 21
+OP_LOG_AND           : 
+OP_LOG_BT            : 34
+OP_LOG_BT_E          : 29
+OP_LOG_DIFF          : 32
+OP_LOG_EQUAL         : 31
+OP_LOG_LT            : 33
+OP_LOG_LT_E          : 30
+OP_LOG_NOT           : 
+OP_LOG_OR            : 35
+OP_MUL               : 18
+OP_SUB               : 17
+PAR_CLOSE            : 43
+PAR_OPEN             : 43
+STRING               : 
+TRUE                 : 36
+VIRGULA              : 39 42 59
+error                : 
+
+Nonterminals, with rules where they appear
+
+atribuicao           : 11 39 39 42
+boolean              : 26
+criacao_variaveis    : 
+criacao_variavel     : 
+declaracao           : 2 3 5
+declaracao_for       : 7
+declaracao_funcao    : 14
+declaracao_if        : 6
+declaracao_ler       : 10
+declaracao_print     : 9
+declaracao_variavel_sem_valores : 12
+declaracao_while     : 8
+expressao            : 4 16 16 17 17 18 18 19 19 20 20 29 29 30 30 31 31 32 32 33 33 34 34 35 35 38 41 42 43 52 57 58
+expressao_booleana   : 13 27 48 49 53
+lista_declaracoes    : 1 2 48 49 49 52 53 54 55
+parametros           : 50 56 59 59
+programa             : 0
+retorna              : 15
+tipo                 : 40 41 42
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_declaracoes
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    programa                       shift and go to state 1
+    lista_declaracoes              shift and go to state 2
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    expressao_booleana             shift and go to state 12
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_declaracoes .
+
+    $end            reduce using rule 1 (programa -> lista_declaracoes .)
+
+
+state 3
+
+    (2) lista_declaracoes -> declaracao . lista_declaracoes
+    (3) lista_declaracoes -> declaracao .
+    (5) declaracao -> declaracao . KW_END_LINE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    $end            reduce using rule 3 (lista_declaracoes -> declaracao .)
+    KW_CLOSE        reduce using rule 3 (lista_declaracoes -> declaracao .)
+    KW_ELSE         reduce using rule 3 (lista_declaracoes -> declaracao .)
+    KW_END_LINE     shift and go to state 35
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    declaracao                     shift and go to state 3
+    lista_declaracoes              shift and go to state 34
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    expressao_booleana             shift and go to state 12
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 4
+
+    (4) declaracao -> expressao . KW_END_LINE
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     shift and go to state 36
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+
+state 5
+
+    (6) declaracao -> declaracao_if . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 49
+
+
+state 6
+
+    (7) declaracao -> declaracao_for . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 50
+
+
+state 7
+
+    (8) declaracao -> declaracao_while . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 51
+
+
+state 8
+
+    (9) declaracao -> declaracao_print .
+
+    KW_END_LINE     reduce using rule 9 (declaracao -> declaracao_print .)
+    OP_INC          reduce using rule 9 (declaracao -> declaracao_print .)
+    OP_DEC          reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_INT          reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_FLOAT        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_STRING       reduce using rule 9 (declaracao -> declaracao_print .)
+    ID              reduce using rule 9 (declaracao -> declaracao_print .)
+    PAR_OPEN        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_IF           reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_FOR_OPEN     reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_WHILE        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_PRINT        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_INPUT        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_FUNCTION     reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_RETURN       reduce using rule 9 (declaracao -> declaracao_print .)
+    TRUE            reduce using rule 9 (declaracao -> declaracao_print .)
+    FALSE           reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_BOOLEAN      reduce using rule 9 (declaracao -> declaracao_print .)
+    $end            reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_CLOSE        reduce using rule 9 (declaracao -> declaracao_print .)
+    KW_ELSE         reduce using rule 9 (declaracao -> declaracao_print .)
+
+
+state 9
+
+    (10) declaracao -> declaracao_ler . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 52
+
+
+state 10
+
+    (11) declaracao -> atribuicao . KW_END_LINE
+    (39) atribuicao -> atribuicao . VIRGULA atribuicao
+
+    KW_END_LINE     shift and go to state 53
+    VIRGULA         shift and go to state 54
+
+
+state 11
+
+    (12) declaracao -> declaracao_variavel_sem_valores . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 55
+
+
+state 12
+
+    (13) declaracao -> expressao_booleana . KW_END_LINE
+    (27) expressao -> expressao_booleana .
+
+  ! shift/reduce conflict for KW_END_LINE resolved as shift
+    KW_END_LINE     shift and go to state 56
+    OP_ADD          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_SUB          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_MUL          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_DIV          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_EXP          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_EQUAL    reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_DIFF     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_OR       reduce using rule 27 (expressao -> expressao_booleana .)
+
+  ! KW_END_LINE     [ reduce using rule 27 (expressao -> expressao_booleana .) ]
+
+
+state 13
+
+    (14) declaracao -> declaracao_funcao . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 57
+
+
+state 14
+
+    (15) declaracao -> retorna . KW_END_LINE
+
+    KW_END_LINE     shift and go to state 58
+
+
+state 15
+
+    (21) expressao -> OP_INC . ID
+
+    ID              shift and go to state 59
+
+
+state 16
+
+    (28) expressao -> ID .
+    (56) expressao -> ID . KW_FUNC_OPEN_ARGS parametros
+    (38) atribuicao -> ID . OP_ATRIB expressao
+
+    KW_END_LINE     reduce using rule 28 (expressao -> ID .)
+    OP_ADD          reduce using rule 28 (expressao -> ID .)
+    OP_SUB          reduce using rule 28 (expressao -> ID .)
+    OP_MUL          reduce using rule 28 (expressao -> ID .)
+    OP_DIV          reduce using rule 28 (expressao -> ID .)
+    OP_EXP          reduce using rule 28 (expressao -> ID .)
+    OP_LOG_BT_E     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_LT_E     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_EQUAL    reduce using rule 28 (expressao -> ID .)
+    OP_LOG_DIFF     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_LT       reduce using rule 28 (expressao -> ID .)
+    OP_LOG_BT       reduce using rule 28 (expressao -> ID .)
+    OP_LOG_OR       reduce using rule 28 (expressao -> ID .)
+    KW_FUNC_OPEN_ARGS shift and go to state 60
+    OP_ATRIB        shift and go to state 61
+
+
+state 17
+
+    (22) expressao -> OP_DEC . ID
+
+    ID              shift and go to state 62
+
+
+state 18
+
+    (23) expressao -> KW_INT .
+    (44) tipo -> KW_INT .
+
+    KW_END_LINE     reduce using rule 23 (expressao -> KW_INT .)
+    OP_ADD          reduce using rule 23 (expressao -> KW_INT .)
+    OP_SUB          reduce using rule 23 (expressao -> KW_INT .)
+    OP_MUL          reduce using rule 23 (expressao -> KW_INT .)
+    OP_DIV          reduce using rule 23 (expressao -> KW_INT .)
+    OP_EXP          reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_BT_E     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_LT_E     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_EQUAL    reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_DIFF     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_LT       reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_BT       reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_OR       reduce using rule 23 (expressao -> KW_INT .)
+    ID              reduce using rule 44 (tipo -> KW_INT .)
+
+
+state 19
+
+    (24) expressao -> KW_FLOAT .
+    (46) tipo -> KW_FLOAT .
+
+    KW_END_LINE     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_ADD          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_SUB          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_MUL          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_DIV          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_EXP          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_BT_E     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_LT_E     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_EQUAL    reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_DIFF     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_LT       reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_BT       reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_OR       reduce using rule 24 (expressao -> KW_FLOAT .)
+    ID              reduce using rule 46 (tipo -> KW_FLOAT .)
+
+
+state 20
+
+    (25) expressao -> KW_STRING .
+    (47) tipo -> KW_STRING .
+
+    KW_END_LINE     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_ADD          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_SUB          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_MUL          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_DIV          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_EXP          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_BT_E     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_LT_E     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_EQUAL    reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_DIFF     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_LT       reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_BT       reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_OR       reduce using rule 25 (expressao -> KW_STRING .)
+    ID              reduce using rule 47 (tipo -> KW_STRING .)
+
+
+state 21
+
+    (26) expressao -> boolean .
+
+    KW_END_LINE     reduce using rule 26 (expressao -> boolean .)
+    OP_ADD          reduce using rule 26 (expressao -> boolean .)
+    OP_SUB          reduce using rule 26 (expressao -> boolean .)
+    OP_MUL          reduce using rule 26 (expressao -> boolean .)
+    OP_DIV          reduce using rule 26 (expressao -> boolean .)
+    OP_EXP          reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_BT_E     reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_LT_E     reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_EQUAL    reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_DIFF     reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_LT       reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_BT       reduce using rule 26 (expressao -> boolean .)
+    OP_LOG_OR       reduce using rule 26 (expressao -> boolean .)
+    PAR_CLOSE       reduce using rule 26 (expressao -> boolean .)
+    VIRGULA         reduce using rule 26 (expressao -> boolean .)
+    KW_IF_OPEN      reduce using rule 26 (expressao -> boolean .)
+    FACA            reduce using rule 26 (expressao -> boolean .)
+
+
+state 22
+
+    (43) expressao -> PAR_OPEN . expressao PAR_CLOSE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 63
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 23
+
+    (48) declaracao_if -> KW_IF . expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> KW_IF . expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao_booleana             shift and go to state 69
+    expressao                      shift and go to state 70
+    boolean                        shift and go to state 21
+
+state 24
+
+    (52) declaracao_for -> KW_FOR_OPEN . ID EM expressao FACA lista_declaracoes KW_CLOSE
+
+    ID              shift and go to state 71
+
+
+state 25
+
+    (53) declaracao_while -> KW_WHILE . expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao_booleana             shift and go to state 72
+    expressao                      shift and go to state 70
+    boolean                        shift and go to state 21
+
+state 26
+
+    (50) declaracao_print -> KW_PRINT . parametros KW_END_LINE
+    (58) parametros -> . expressao
+    (59) parametros -> . parametros VIRGULA parametros
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    parametros                     shift and go to state 73
+    expressao                      shift and go to state 74
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 27
+
+    (51) declaracao_ler -> KW_INPUT . ID
+
+    ID              shift and go to state 75
+
+
+state 28
+
+    (40) declaracao_variavel_sem_valores -> tipo . ID
+
+    ID              shift and go to state 76
+
+
+state 29
+
+    (54) declaracao_funcao -> KW_FUNCTION . ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> KW_FUNCTION . ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+
+    ID              shift and go to state 77
+
+
+state 30
+
+    (57) retorna -> KW_RETURN . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 78
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 31
+
+    (36) boolean -> TRUE .
+
+    KW_END_LINE     reduce using rule 36 (boolean -> TRUE .)
+    OP_ADD          reduce using rule 36 (boolean -> TRUE .)
+    OP_SUB          reduce using rule 36 (boolean -> TRUE .)
+    OP_MUL          reduce using rule 36 (boolean -> TRUE .)
+    OP_DIV          reduce using rule 36 (boolean -> TRUE .)
+    OP_EXP          reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_BT_E     reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_LT_E     reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_EQUAL    reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_DIFF     reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_LT       reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_BT       reduce using rule 36 (boolean -> TRUE .)
+    OP_LOG_OR       reduce using rule 36 (boolean -> TRUE .)
+    PAR_CLOSE       reduce using rule 36 (boolean -> TRUE .)
+    VIRGULA         reduce using rule 36 (boolean -> TRUE .)
+    KW_IF_OPEN      reduce using rule 36 (boolean -> TRUE .)
+    FACA            reduce using rule 36 (boolean -> TRUE .)
+
+
+state 32
+
+    (37) boolean -> FALSE .
+
+    KW_END_LINE     reduce using rule 37 (boolean -> FALSE .)
+    OP_ADD          reduce using rule 37 (boolean -> FALSE .)
+    OP_SUB          reduce using rule 37 (boolean -> FALSE .)
+    OP_MUL          reduce using rule 37 (boolean -> FALSE .)
+    OP_DIV          reduce using rule 37 (boolean -> FALSE .)
+    OP_EXP          reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_BT_E     reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_LT_E     reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_EQUAL    reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_DIFF     reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_LT       reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_BT       reduce using rule 37 (boolean -> FALSE .)
+    OP_LOG_OR       reduce using rule 37 (boolean -> FALSE .)
+    PAR_CLOSE       reduce using rule 37 (boolean -> FALSE .)
+    VIRGULA         reduce using rule 37 (boolean -> FALSE .)
+    KW_IF_OPEN      reduce using rule 37 (boolean -> FALSE .)
+    FACA            reduce using rule 37 (boolean -> FALSE .)
+
+
+state 33
+
+    (45) tipo -> KW_BOOLEAN .
+
+    ID              reduce using rule 45 (tipo -> KW_BOOLEAN .)
+
+
+state 34
+
+    (2) lista_declaracoes -> declaracao lista_declaracoes .
+
+    $end            reduce using rule 2 (lista_declaracoes -> declaracao lista_declaracoes .)
+    KW_CLOSE        reduce using rule 2 (lista_declaracoes -> declaracao lista_declaracoes .)
+    KW_ELSE         reduce using rule 2 (lista_declaracoes -> declaracao lista_declaracoes .)
+
+
+state 35
+
+    (5) declaracao -> declaracao KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    OP_INC          reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    OP_DEC          reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_INT          reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_FLOAT        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_STRING       reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    ID              reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    PAR_OPEN        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_IF           reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_WHILE        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_PRINT        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_INPUT        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_RETURN       reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    TRUE            reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    FALSE           reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    $end            reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_CLOSE        reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+    KW_ELSE         reduce using rule 5 (declaracao -> declaracao KW_END_LINE .)
+
+
+state 36
+
+    (4) declaracao -> expressao KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    OP_INC          reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    OP_DEC          reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_INT          reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_FLOAT        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_STRING       reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    ID              reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    PAR_OPEN        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_IF           reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_WHILE        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_PRINT        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_INPUT        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_RETURN       reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    TRUE            reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    FALSE           reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    $end            reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_CLOSE        reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+    KW_ELSE         reduce using rule 4 (declaracao -> expressao KW_END_LINE .)
+
+
+state 37
+
+    (16) expressao -> expressao OP_ADD . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 79
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 38
+
+    (17) expressao -> expressao OP_SUB . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 80
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 39
+
+    (18) expressao -> expressao OP_MUL . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 81
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 40
+
+    (19) expressao -> expressao OP_DIV . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 82
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 41
+
+    (20) expressao -> expressao OP_EXP . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 83
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 42
+
+    (29) expressao_booleana -> expressao OP_LOG_BT_E . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 84
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 43
+
+    (30) expressao_booleana -> expressao OP_LOG_LT_E . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 85
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 44
+
+    (31) expressao_booleana -> expressao OP_LOG_EQUAL . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 86
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 45
+
+    (32) expressao_booleana -> expressao OP_LOG_DIFF . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 87
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 46
+
+    (33) expressao_booleana -> expressao OP_LOG_LT . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 88
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 47
+
+    (34) expressao_booleana -> expressao OP_LOG_BT . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 89
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 48
+
+    (35) expressao_booleana -> expressao OP_LOG_OR . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 90
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 49
+
+    (6) declaracao -> declaracao_if KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    OP_INC          reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    OP_DEC          reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_INT          reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_FLOAT        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_STRING       reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    ID              reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    PAR_OPEN        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_IF           reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_WHILE        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_PRINT        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_INPUT        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_RETURN       reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    TRUE            reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    FALSE           reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    $end            reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_CLOSE        reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+    KW_ELSE         reduce using rule 6 (declaracao -> declaracao_if KW_END_LINE .)
+
+
+state 50
+
+    (7) declaracao -> declaracao_for KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    OP_INC          reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    OP_DEC          reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_INT          reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_FLOAT        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_STRING       reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    ID              reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    PAR_OPEN        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_IF           reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_WHILE        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_PRINT        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_INPUT        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_RETURN       reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    TRUE            reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    FALSE           reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    $end            reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_CLOSE        reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+    KW_ELSE         reduce using rule 7 (declaracao -> declaracao_for KW_END_LINE .)
+
+
+state 51
+
+    (8) declaracao -> declaracao_while KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    OP_INC          reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    OP_DEC          reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_INT          reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_FLOAT        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_STRING       reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    ID              reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    PAR_OPEN        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_IF           reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_WHILE        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_PRINT        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_INPUT        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_RETURN       reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    TRUE            reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    FALSE           reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    $end            reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_CLOSE        reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+    KW_ELSE         reduce using rule 8 (declaracao -> declaracao_while KW_END_LINE .)
+
+
+state 52
+
+    (10) declaracao -> declaracao_ler KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    OP_INC          reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    OP_DEC          reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_INT          reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_FLOAT        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_STRING       reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    ID              reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    PAR_OPEN        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_IF           reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_WHILE        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_PRINT        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_INPUT        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_RETURN       reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    TRUE            reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    FALSE           reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    $end            reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_CLOSE        reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+    KW_ELSE         reduce using rule 10 (declaracao -> declaracao_ler KW_END_LINE .)
+
+
+state 53
+
+    (11) declaracao -> atribuicao KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    OP_INC          reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    OP_DEC          reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_INT          reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_FLOAT        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_STRING       reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    ID              reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    PAR_OPEN        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_IF           reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_WHILE        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_PRINT        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_INPUT        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_RETURN       reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    TRUE            reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    FALSE           reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    $end            reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_CLOSE        reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+    KW_ELSE         reduce using rule 11 (declaracao -> atribuicao KW_END_LINE .)
+
+
+state 54
+
+    (39) atribuicao -> atribuicao VIRGULA . atribuicao
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+
+    ID              shift and go to state 92
+
+    atribuicao                     shift and go to state 91
+
+state 55
+
+    (12) declaracao -> declaracao_variavel_sem_valores KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    OP_INC          reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    OP_DEC          reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_INT          reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_FLOAT        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_STRING       reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    ID              reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    PAR_OPEN        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_IF           reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_WHILE        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_PRINT        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_INPUT        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_RETURN       reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    TRUE            reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    FALSE           reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    $end            reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_CLOSE        reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+    KW_ELSE         reduce using rule 12 (declaracao -> declaracao_variavel_sem_valores KW_END_LINE .)
+
+
+state 56
+
+    (13) declaracao -> expressao_booleana KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    OP_INC          reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    OP_DEC          reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_INT          reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_FLOAT        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_STRING       reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    ID              reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    PAR_OPEN        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_IF           reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_WHILE        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_PRINT        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_INPUT        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_RETURN       reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    TRUE            reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    FALSE           reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    $end            reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_CLOSE        reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+    KW_ELSE         reduce using rule 13 (declaracao -> expressao_booleana KW_END_LINE .)
+
+
+state 57
+
+    (14) declaracao -> declaracao_funcao KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    OP_INC          reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    OP_DEC          reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_INT          reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_FLOAT        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_STRING       reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    ID              reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    PAR_OPEN        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_IF           reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_WHILE        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_PRINT        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_INPUT        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_RETURN       reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    TRUE            reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    FALSE           reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    $end            reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_CLOSE        reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+    KW_ELSE         reduce using rule 14 (declaracao -> declaracao_funcao KW_END_LINE .)
+
+
+state 58
+
+    (15) declaracao -> retorna KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    OP_INC          reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    OP_DEC          reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_INT          reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_FLOAT        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_STRING       reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    ID              reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    PAR_OPEN        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_IF           reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_WHILE        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_PRINT        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_INPUT        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_RETURN       reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    TRUE            reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    FALSE           reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    $end            reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_CLOSE        reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+    KW_ELSE         reduce using rule 15 (declaracao -> retorna KW_END_LINE .)
+
+
+state 59
+
+    (21) expressao -> OP_INC ID .
+
+    KW_END_LINE     reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_ADD          reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_SUB          reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_MUL          reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_DIV          reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_EXP          reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_BT_E     reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_LT_E     reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_EQUAL    reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_DIFF     reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_LT       reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_BT       reduce using rule 21 (expressao -> OP_INC ID .)
+    OP_LOG_OR       reduce using rule 21 (expressao -> OP_INC ID .)
+    PAR_CLOSE       reduce using rule 21 (expressao -> OP_INC ID .)
+    VIRGULA         reduce using rule 21 (expressao -> OP_INC ID .)
+    KW_IF_OPEN      reduce using rule 21 (expressao -> OP_INC ID .)
+    FACA            reduce using rule 21 (expressao -> OP_INC ID .)
+
+
+state 60
+
+    (56) expressao -> ID KW_FUNC_OPEN_ARGS . parametros
+    (58) parametros -> . expressao
+    (59) parametros -> . parametros VIRGULA parametros
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    parametros                     shift and go to state 93
+    expressao                      shift and go to state 74
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 61
+
+    (38) atribuicao -> ID OP_ATRIB . expressao
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 94
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 62
+
+    (22) expressao -> OP_DEC ID .
+
+    KW_END_LINE     reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_ADD          reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_SUB          reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_MUL          reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_DIV          reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_EXP          reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_BT_E     reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_LT_E     reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_EQUAL    reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_DIFF     reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_LT       reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_BT       reduce using rule 22 (expressao -> OP_DEC ID .)
+    OP_LOG_OR       reduce using rule 22 (expressao -> OP_DEC ID .)
+    PAR_CLOSE       reduce using rule 22 (expressao -> OP_DEC ID .)
+    VIRGULA         reduce using rule 22 (expressao -> OP_DEC ID .)
+    KW_IF_OPEN      reduce using rule 22 (expressao -> OP_DEC ID .)
+    FACA            reduce using rule 22 (expressao -> OP_DEC ID .)
+
+
+state 63
+
+    (43) expressao -> PAR_OPEN expressao . PAR_CLOSE
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    PAR_CLOSE       shift and go to state 95
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+
+state 64
+
+    (28) expressao -> ID .
+    (56) expressao -> ID . KW_FUNC_OPEN_ARGS parametros
+
+    PAR_CLOSE       reduce using rule 28 (expressao -> ID .)
+    OP_ADD          reduce using rule 28 (expressao -> ID .)
+    OP_SUB          reduce using rule 28 (expressao -> ID .)
+    OP_MUL          reduce using rule 28 (expressao -> ID .)
+    OP_DIV          reduce using rule 28 (expressao -> ID .)
+    OP_EXP          reduce using rule 28 (expressao -> ID .)
+    OP_LOG_BT_E     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_LT_E     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_EQUAL    reduce using rule 28 (expressao -> ID .)
+    OP_LOG_DIFF     reduce using rule 28 (expressao -> ID .)
+    OP_LOG_LT       reduce using rule 28 (expressao -> ID .)
+    OP_LOG_BT       reduce using rule 28 (expressao -> ID .)
+    OP_LOG_OR       reduce using rule 28 (expressao -> ID .)
+    KW_END_LINE     reduce using rule 28 (expressao -> ID .)
+    VIRGULA         reduce using rule 28 (expressao -> ID .)
+    KW_IF_OPEN      reduce using rule 28 (expressao -> ID .)
+    FACA            reduce using rule 28 (expressao -> ID .)
+    KW_FUNC_OPEN_ARGS shift and go to state 60
+
+
+state 65
+
+    (23) expressao -> KW_INT .
+
+    PAR_CLOSE       reduce using rule 23 (expressao -> KW_INT .)
+    OP_ADD          reduce using rule 23 (expressao -> KW_INT .)
+    OP_SUB          reduce using rule 23 (expressao -> KW_INT .)
+    OP_MUL          reduce using rule 23 (expressao -> KW_INT .)
+    OP_DIV          reduce using rule 23 (expressao -> KW_INT .)
+    OP_EXP          reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_BT_E     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_LT_E     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_EQUAL    reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_DIFF     reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_LT       reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_BT       reduce using rule 23 (expressao -> KW_INT .)
+    OP_LOG_OR       reduce using rule 23 (expressao -> KW_INT .)
+    KW_END_LINE     reduce using rule 23 (expressao -> KW_INT .)
+    VIRGULA         reduce using rule 23 (expressao -> KW_INT .)
+    KW_IF_OPEN      reduce using rule 23 (expressao -> KW_INT .)
+    FACA            reduce using rule 23 (expressao -> KW_INT .)
+
+
+state 66
+
+    (24) expressao -> KW_FLOAT .
+
+    PAR_CLOSE       reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_ADD          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_SUB          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_MUL          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_DIV          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_EXP          reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_BT_E     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_LT_E     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_EQUAL    reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_DIFF     reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_LT       reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_BT       reduce using rule 24 (expressao -> KW_FLOAT .)
+    OP_LOG_OR       reduce using rule 24 (expressao -> KW_FLOAT .)
+    KW_END_LINE     reduce using rule 24 (expressao -> KW_FLOAT .)
+    VIRGULA         reduce using rule 24 (expressao -> KW_FLOAT .)
+    KW_IF_OPEN      reduce using rule 24 (expressao -> KW_FLOAT .)
+    FACA            reduce using rule 24 (expressao -> KW_FLOAT .)
+
+
+state 67
+
+    (25) expressao -> KW_STRING .
+
+    PAR_CLOSE       reduce using rule 25 (expressao -> KW_STRING .)
+    OP_ADD          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_SUB          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_MUL          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_DIV          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_EXP          reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_BT_E     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_LT_E     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_EQUAL    reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_DIFF     reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_LT       reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_BT       reduce using rule 25 (expressao -> KW_STRING .)
+    OP_LOG_OR       reduce using rule 25 (expressao -> KW_STRING .)
+    KW_END_LINE     reduce using rule 25 (expressao -> KW_STRING .)
+    VIRGULA         reduce using rule 25 (expressao -> KW_STRING .)
+    KW_IF_OPEN      reduce using rule 25 (expressao -> KW_STRING .)
+    FACA            reduce using rule 25 (expressao -> KW_STRING .)
+
+
+state 68
+
+    (27) expressao -> expressao_booleana .
+
+    PAR_CLOSE       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_ADD          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_SUB          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_MUL          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_DIV          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_EXP          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_EQUAL    reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_DIFF     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_OR       reduce using rule 27 (expressao -> expressao_booleana .)
+    KW_END_LINE     reduce using rule 27 (expressao -> expressao_booleana .)
+    VIRGULA         reduce using rule 27 (expressao -> expressao_booleana .)
+    KW_IF_OPEN      reduce using rule 27 (expressao -> expressao_booleana .)
+    FACA            reduce using rule 27 (expressao -> expressao_booleana .)
+
+
+state 69
+
+    (48) declaracao_if -> KW_IF expressao_booleana . KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> KW_IF expressao_booleana . KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (27) expressao -> expressao_booleana .
+
+    KW_IF_OPEN      shift and go to state 96
+    OP_LOG_BT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_EQUAL    reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_DIFF     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_OR       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_ADD          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_SUB          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_MUL          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_DIV          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_EXP          reduce using rule 27 (expressao -> expressao_booleana .)
+
+
+state 70
+
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+
+state 71
+
+    (52) declaracao_for -> KW_FOR_OPEN ID . EM expressao FACA lista_declaracoes KW_CLOSE
+
+    EM              shift and go to state 97
+
+
+state 72
+
+    (53) declaracao_while -> KW_WHILE expressao_booleana . FACA lista_declaracoes KW_CLOSE
+    (27) expressao -> expressao_booleana .
+
+    FACA            shift and go to state 98
+    OP_LOG_BT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT_E     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_EQUAL    reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_DIFF     reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_LT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_BT       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_LOG_OR       reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_ADD          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_SUB          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_MUL          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_DIV          reduce using rule 27 (expressao -> expressao_booleana .)
+    OP_EXP          reduce using rule 27 (expressao -> expressao_booleana .)
+
+
+state 73
+
+    (50) declaracao_print -> KW_PRINT parametros . KW_END_LINE
+    (59) parametros -> parametros . VIRGULA parametros
+
+    KW_END_LINE     shift and go to state 99
+    VIRGULA         shift and go to state 100
+
+
+state 74
+
+    (58) parametros -> expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+  ! shift/reduce conflict for OP_ADD resolved as shift
+  ! shift/reduce conflict for OP_SUB resolved as shift
+  ! shift/reduce conflict for OP_MUL resolved as shift
+  ! shift/reduce conflict for OP_DIV resolved as shift
+  ! shift/reduce conflict for OP_EXP resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_EQUAL resolved as shift
+  ! shift/reduce conflict for OP_LOG_DIFF resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT resolved as shift
+  ! shift/reduce conflict for OP_LOG_OR resolved as shift
+    KW_END_LINE     reduce using rule 58 (parametros -> expressao .)
+    VIRGULA         reduce using rule 58 (parametros -> expressao .)
+    PAR_CLOSE       reduce using rule 58 (parametros -> expressao .)
+    KW_IF_OPEN      reduce using rule 58 (parametros -> expressao .)
+    FACA            reduce using rule 58 (parametros -> expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+  ! OP_ADD          [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_SUB          [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_MUL          [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_DIV          [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_EXP          [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_BT_E     [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_LT_E     [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_EQUAL    [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_DIFF     [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_LT       [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_BT       [ reduce using rule 58 (parametros -> expressao .) ]
+  ! OP_LOG_OR       [ reduce using rule 58 (parametros -> expressao .) ]
+
+
+state 75
+
+    (51) declaracao_ler -> KW_INPUT ID .
+
+    KW_END_LINE     reduce using rule 51 (declaracao_ler -> KW_INPUT ID .)
+
+
+state 76
+
+    (40) declaracao_variavel_sem_valores -> tipo ID .
+
+    KW_END_LINE     reduce using rule 40 (declaracao_variavel_sem_valores -> tipo ID .)
+
+
+state 77
+
+    (54) declaracao_funcao -> KW_FUNCTION ID . KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> KW_FUNCTION ID . KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+
+    KW_FUNC_OPEN    shift and go to state 101
+    KW_FUNC_OPEN_ARGS shift and go to state 102
+
+
+state 78
+
+    (57) retorna -> KW_RETURN expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 57 (retorna -> KW_RETURN expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+
+state 79
+
+    (16) expressao -> expressao OP_ADD expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_ADD          reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_SUB          reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_BT_E     reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_LT_E     reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_EQUAL    reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_DIFF     reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_LT       reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_BT       reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_LOG_OR       reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    PAR_CLOSE       reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    VIRGULA         reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    KW_IF_OPEN      reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    FACA            reduce using rule 16 (expressao -> expressao OP_ADD expressao .)
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_MUL          [ reduce using rule 16 (expressao -> expressao OP_ADD expressao .) ]
+  ! OP_DIV          [ reduce using rule 16 (expressao -> expressao OP_ADD expressao .) ]
+  ! OP_EXP          [ reduce using rule 16 (expressao -> expressao OP_ADD expressao .) ]
+  ! OP_ADD          [ shift and go to state 37 ]
+  ! OP_SUB          [ shift and go to state 38 ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 80
+
+    (17) expressao -> expressao OP_SUB expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_ADD          reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_SUB          reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_BT_E     reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_LT_E     reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_EQUAL    reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_DIFF     reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_LT       reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_BT       reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_LOG_OR       reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    PAR_CLOSE       reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    VIRGULA         reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    KW_IF_OPEN      reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    FACA            reduce using rule 17 (expressao -> expressao OP_SUB expressao .)
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_MUL          [ reduce using rule 17 (expressao -> expressao OP_SUB expressao .) ]
+  ! OP_DIV          [ reduce using rule 17 (expressao -> expressao OP_SUB expressao .) ]
+  ! OP_EXP          [ reduce using rule 17 (expressao -> expressao OP_SUB expressao .) ]
+  ! OP_ADD          [ shift and go to state 37 ]
+  ! OP_SUB          [ shift and go to state 38 ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 81
+
+    (18) expressao -> expressao OP_MUL expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_ADD          reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_SUB          reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_MUL          reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_DIV          reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_BT_E     reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_LT_E     reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_EQUAL    reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_DIFF     reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_LT       reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_BT       reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_LOG_OR       reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    PAR_CLOSE       reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    VIRGULA         reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    KW_IF_OPEN      reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    FACA            reduce using rule 18 (expressao -> expressao OP_MUL expressao .)
+    OP_EXP          shift and go to state 41
+
+  ! OP_EXP          [ reduce using rule 18 (expressao -> expressao OP_MUL expressao .) ]
+  ! OP_ADD          [ shift and go to state 37 ]
+  ! OP_SUB          [ shift and go to state 38 ]
+  ! OP_MUL          [ shift and go to state 39 ]
+  ! OP_DIV          [ shift and go to state 40 ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 82
+
+    (19) expressao -> expressao OP_DIV expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_ADD          reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_SUB          reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_MUL          reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_DIV          reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_BT_E     reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_LT_E     reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_EQUAL    reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_DIFF     reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_LT       reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_BT       reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_LOG_OR       reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    PAR_CLOSE       reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    VIRGULA         reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    KW_IF_OPEN      reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    FACA            reduce using rule 19 (expressao -> expressao OP_DIV expressao .)
+    OP_EXP          shift and go to state 41
+
+  ! OP_EXP          [ reduce using rule 19 (expressao -> expressao OP_DIV expressao .) ]
+  ! OP_ADD          [ shift and go to state 37 ]
+  ! OP_SUB          [ shift and go to state 38 ]
+  ! OP_MUL          [ shift and go to state 39 ]
+  ! OP_DIV          [ shift and go to state 40 ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 83
+
+    (20) expressao -> expressao OP_EXP expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_ADD          reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_SUB          reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_MUL          reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_DIV          reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_EXP          reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_BT_E     reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_LT_E     reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_EQUAL    reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_DIFF     reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_LT       reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_BT       reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    OP_LOG_OR       reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    PAR_CLOSE       reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    VIRGULA         reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    KW_IF_OPEN      reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+    FACA            reduce using rule 20 (expressao -> expressao OP_EXP expressao .)
+
+  ! OP_ADD          [ shift and go to state 37 ]
+  ! OP_SUB          [ shift and go to state 38 ]
+  ! OP_MUL          [ shift and go to state 39 ]
+  ! OP_DIV          [ shift and go to state 40 ]
+  ! OP_EXP          [ shift and go to state 41 ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 84
+
+    (29) expressao_booleana -> expressao OP_LOG_BT_E expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_BT_E     reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_LT_E     reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_EQUAL    reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_DIFF     reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_LT       reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_BT       reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_LOG_OR       reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    PAR_CLOSE       reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    KW_IF_OPEN      reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    FACA            reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    VIRGULA         reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_ADD          [ reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .) ]
+  ! OP_SUB          [ reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .) ]
+  ! OP_MUL          [ reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .) ]
+  ! OP_DIV          [ reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .) ]
+  ! OP_EXP          [ reduce using rule 29 (expressao_booleana -> expressao OP_LOG_BT_E expressao .) ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 85
+
+    (30) expressao_booleana -> expressao OP_LOG_LT_E expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_BT_E     reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_LT_E     reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_EQUAL    reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_DIFF     reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_LT       reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_BT       reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_LOG_OR       reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    PAR_CLOSE       reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    KW_IF_OPEN      reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    FACA            reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    VIRGULA         reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_ADD          [ reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .) ]
+  ! OP_SUB          [ reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .) ]
+  ! OP_MUL          [ reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .) ]
+  ! OP_DIV          [ reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .) ]
+  ! OP_EXP          [ reduce using rule 30 (expressao_booleana -> expressao OP_LOG_LT_E expressao .) ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 86
+
+    (31) expressao_booleana -> expressao OP_LOG_EQUAL expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+  ! shift/reduce conflict for OP_ADD resolved as shift
+  ! shift/reduce conflict for OP_SUB resolved as shift
+  ! shift/reduce conflict for OP_MUL resolved as shift
+  ! shift/reduce conflict for OP_DIV resolved as shift
+  ! shift/reduce conflict for OP_EXP resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_EQUAL resolved as shift
+  ! shift/reduce conflict for OP_LOG_DIFF resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT resolved as shift
+  ! shift/reduce conflict for OP_LOG_OR resolved as shift
+    KW_END_LINE     reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .)
+    PAR_CLOSE       reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .)
+    KW_IF_OPEN      reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .)
+    FACA            reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .)
+    VIRGULA         reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+  ! OP_ADD          [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_SUB          [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_MUL          [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_DIV          [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_EXP          [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_BT_E     [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_LT_E     [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_EQUAL    [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_DIFF     [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_LT       [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_BT       [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+  ! OP_LOG_OR       [ reduce using rule 31 (expressao_booleana -> expressao OP_LOG_EQUAL expressao .) ]
+
+
+state 87
+
+    (32) expressao_booleana -> expressao OP_LOG_DIFF expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_BT_E     reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_LT_E     reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_EQUAL    reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_DIFF     reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_LT       reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_BT       reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_LOG_OR       reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    PAR_CLOSE       reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    KW_IF_OPEN      reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    FACA            reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    VIRGULA         reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_ADD          [ reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .) ]
+  ! OP_SUB          [ reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .) ]
+  ! OP_MUL          [ reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .) ]
+  ! OP_DIV          [ reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .) ]
+  ! OP_EXP          [ reduce using rule 32 (expressao_booleana -> expressao OP_LOG_DIFF expressao .) ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 88
+
+    (33) expressao_booleana -> expressao OP_LOG_LT expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_BT_E     reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_LT_E     reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_EQUAL    reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_DIFF     reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_LT       reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_BT       reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_LOG_OR       reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    PAR_CLOSE       reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    KW_IF_OPEN      reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    FACA            reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    VIRGULA         reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_ADD          [ reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .) ]
+  ! OP_SUB          [ reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .) ]
+  ! OP_MUL          [ reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .) ]
+  ! OP_DIV          [ reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .) ]
+  ! OP_EXP          [ reduce using rule 33 (expressao_booleana -> expressao OP_LOG_LT expressao .) ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 89
+
+    (34) expressao_booleana -> expressao OP_LOG_BT expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_BT_E     reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_LT_E     reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_EQUAL    reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_DIFF     reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_LT       reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_BT       reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_LOG_OR       reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    PAR_CLOSE       reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    KW_IF_OPEN      reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    FACA            reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    VIRGULA         reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+
+  ! OP_ADD          [ reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .) ]
+  ! OP_SUB          [ reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .) ]
+  ! OP_MUL          [ reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .) ]
+  ! OP_DIV          [ reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .) ]
+  ! OP_EXP          [ reduce using rule 34 (expressao_booleana -> expressao OP_LOG_BT expressao .) ]
+  ! OP_LOG_BT_E     [ shift and go to state 42 ]
+  ! OP_LOG_LT_E     [ shift and go to state 43 ]
+  ! OP_LOG_EQUAL    [ shift and go to state 44 ]
+  ! OP_LOG_DIFF     [ shift and go to state 45 ]
+  ! OP_LOG_LT       [ shift and go to state 46 ]
+  ! OP_LOG_BT       [ shift and go to state 47 ]
+  ! OP_LOG_OR       [ shift and go to state 48 ]
+
+
+state 90
+
+    (35) expressao_booleana -> expressao OP_LOG_OR expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+  ! shift/reduce conflict for OP_ADD resolved as shift
+  ! shift/reduce conflict for OP_SUB resolved as shift
+  ! shift/reduce conflict for OP_MUL resolved as shift
+  ! shift/reduce conflict for OP_DIV resolved as shift
+  ! shift/reduce conflict for OP_EXP resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT_E resolved as shift
+  ! shift/reduce conflict for OP_LOG_EQUAL resolved as shift
+  ! shift/reduce conflict for OP_LOG_DIFF resolved as shift
+  ! shift/reduce conflict for OP_LOG_LT resolved as shift
+  ! shift/reduce conflict for OP_LOG_BT resolved as shift
+  ! shift/reduce conflict for OP_LOG_OR resolved as shift
+    KW_END_LINE     reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .)
+    PAR_CLOSE       reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .)
+    KW_IF_OPEN      reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .)
+    FACA            reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .)
+    VIRGULA         reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+  ! OP_ADD          [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_SUB          [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_MUL          [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_DIV          [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_EXP          [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_BT_E     [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_LT_E     [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_EQUAL    [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_DIFF     [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_LT       [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_BT       [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+  ! OP_LOG_OR       [ reduce using rule 35 (expressao_booleana -> expressao OP_LOG_OR expressao .) ]
+
+
+state 91
+
+    (39) atribuicao -> atribuicao VIRGULA atribuicao .
+    (39) atribuicao -> atribuicao . VIRGULA atribuicao
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    KW_END_LINE     reduce using rule 39 (atribuicao -> atribuicao VIRGULA atribuicao .)
+    VIRGULA         shift and go to state 54
+
+  ! VIRGULA         [ reduce using rule 39 (atribuicao -> atribuicao VIRGULA atribuicao .) ]
+
+
+state 92
+
+    (38) atribuicao -> ID . OP_ATRIB expressao
+
+    OP_ATRIB        shift and go to state 61
+
+
+state 93
+
+    (56) expressao -> ID KW_FUNC_OPEN_ARGS parametros .
+    (59) parametros -> parametros . VIRGULA parametros
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    KW_END_LINE     reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_ADD          reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_SUB          reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_MUL          reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_DIV          reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_EXP          reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_BT_E     reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_LT_E     reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_EQUAL    reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_DIFF     reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_LT       reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_BT       reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    OP_LOG_OR       reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    PAR_CLOSE       reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    KW_IF_OPEN      reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    FACA            reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .)
+    VIRGULA         shift and go to state 100
+
+  ! VIRGULA         [ reduce using rule 56 (expressao -> ID KW_FUNC_OPEN_ARGS parametros .) ]
+
+
+state 94
+
+    (38) atribuicao -> ID OP_ATRIB expressao .
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    KW_END_LINE     reduce using rule 38 (atribuicao -> ID OP_ATRIB expressao .)
+    VIRGULA         reduce using rule 38 (atribuicao -> ID OP_ATRIB expressao .)
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+
+state 95
+
+    (43) expressao -> PAR_OPEN expressao PAR_CLOSE .
+
+    KW_END_LINE     reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_ADD          reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_SUB          reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_MUL          reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_DIV          reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_EXP          reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_BT_E     reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_LT_E     reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_EQUAL    reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_DIFF     reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_LT       reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_BT       reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    OP_LOG_OR       reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    PAR_CLOSE       reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    VIRGULA         reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    KW_IF_OPEN      reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+    FACA            reduce using rule 43 (expressao -> PAR_OPEN expressao PAR_CLOSE .)
+
+
+state 96
+
+    (48) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN . lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN . lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    expressao_booleana             shift and go to state 12
+    lista_declaracoes              shift and go to state 103
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 97
+
+    (52) declaracao_for -> KW_FOR_OPEN ID EM . expressao FACA lista_declaracoes KW_CLOSE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    expressao                      shift and go to state 104
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 98
+
+    (53) declaracao_while -> KW_WHILE expressao_booleana FACA . lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    expressao_booleana             shift and go to state 12
+    lista_declaracoes              shift and go to state 105
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 99
+
+    (50) declaracao_print -> KW_PRINT parametros KW_END_LINE .
+
+    KW_END_LINE     reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    OP_INC          reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    OP_DEC          reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_INT          reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_FLOAT        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_STRING       reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    ID              reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    PAR_OPEN        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_IF           reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_FOR_OPEN     reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_WHILE        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_PRINT        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_INPUT        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_FUNCTION     reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_RETURN       reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    TRUE            reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    FALSE           reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_BOOLEAN      reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    $end            reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_CLOSE        reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+    KW_ELSE         reduce using rule 50 (declaracao_print -> KW_PRINT parametros KW_END_LINE .)
+
+
+state 100
+
+    (59) parametros -> parametros VIRGULA . parametros
+    (58) parametros -> . expressao
+    (59) parametros -> . parametros VIRGULA parametros
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 65
+    KW_FLOAT        shift and go to state 66
+    KW_STRING       shift and go to state 67
+    ID              shift and go to state 64
+    PAR_OPEN        shift and go to state 22
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+
+    parametros                     shift and go to state 106
+    expressao                      shift and go to state 74
+    boolean                        shift and go to state 21
+    expressao_booleana             shift and go to state 68
+
+state 101
+
+    (54) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN . lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    lista_declaracoes              shift and go to state 107
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    expressao_booleana             shift and go to state 12
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 102
+
+    (55) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN_ARGS . lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    lista_declaracoes              shift and go to state 108
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    expressao_booleana             shift and go to state 12
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 103
+
+    (48) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes . KW_CLOSE
+    (49) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes . KW_ELSE lista_declaracoes KW_CLOSE
+
+    KW_CLOSE        shift and go to state 109
+    KW_ELSE         shift and go to state 110
+
+
+state 104
+
+    (52) declaracao_for -> KW_FOR_OPEN ID EM expressao . FACA lista_declaracoes KW_CLOSE
+    (16) expressao -> expressao . OP_ADD expressao
+    (17) expressao -> expressao . OP_SUB expressao
+    (18) expressao -> expressao . OP_MUL expressao
+    (19) expressao -> expressao . OP_DIV expressao
+    (20) expressao -> expressao . OP_EXP expressao
+    (29) expressao_booleana -> expressao . OP_LOG_BT_E expressao
+    (30) expressao_booleana -> expressao . OP_LOG_LT_E expressao
+    (31) expressao_booleana -> expressao . OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> expressao . OP_LOG_DIFF expressao
+    (33) expressao_booleana -> expressao . OP_LOG_LT expressao
+    (34) expressao_booleana -> expressao . OP_LOG_BT expressao
+    (35) expressao_booleana -> expressao . OP_LOG_OR expressao
+
+    FACA            shift and go to state 111
+    OP_ADD          shift and go to state 37
+    OP_SUB          shift and go to state 38
+    OP_MUL          shift and go to state 39
+    OP_DIV          shift and go to state 40
+    OP_EXP          shift and go to state 41
+    OP_LOG_BT_E     shift and go to state 42
+    OP_LOG_LT_E     shift and go to state 43
+    OP_LOG_EQUAL    shift and go to state 44
+    OP_LOG_DIFF     shift and go to state 45
+    OP_LOG_LT       shift and go to state 46
+    OP_LOG_BT       shift and go to state 47
+    OP_LOG_OR       shift and go to state 48
+
+
+state 105
+
+    (53) declaracao_while -> KW_WHILE expressao_booleana FACA lista_declaracoes . KW_CLOSE
+
+    KW_CLOSE        shift and go to state 112
+
+
+state 106
+
+    (59) parametros -> parametros VIRGULA parametros .
+    (59) parametros -> parametros . VIRGULA parametros
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    KW_END_LINE     reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_ADD          reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_SUB          reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_MUL          reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_DIV          reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_EXP          reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_BT_E     reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_LT_E     reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_EQUAL    reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_DIFF     reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_LT       reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_BT       reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    OP_LOG_OR       reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    PAR_CLOSE       reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    KW_IF_OPEN      reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    FACA            reduce using rule 59 (parametros -> parametros VIRGULA parametros .)
+    VIRGULA         shift and go to state 100
+
+  ! VIRGULA         [ reduce using rule 59 (parametros -> parametros VIRGULA parametros .) ]
+
+
+state 107
+
+    (54) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes . KW_CLOSE
+
+    KW_CLOSE        shift and go to state 113
+
+
+state 108
+
+    (55) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes . KW_CLOSE
+
+    KW_CLOSE        shift and go to state 114
+
+
+state 109
+
+    (48) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 48 (declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE .)
+
+
+state 110
+
+    (49) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE . lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    expressao_booleana             shift and go to state 12
+    lista_declaracoes              shift and go to state 115
+    declaracao                     shift and go to state 3
+    expressao                      shift and go to state 4
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 111
+
+    (52) declaracao_for -> KW_FOR_OPEN ID EM expressao FACA . lista_declaracoes KW_CLOSE
+    (2) lista_declaracoes -> . declaracao lista_declaracoes
+    (3) lista_declaracoes -> . declaracao
+    (4) declaracao -> . expressao KW_END_LINE
+    (5) declaracao -> . declaracao KW_END_LINE
+    (6) declaracao -> . declaracao_if KW_END_LINE
+    (7) declaracao -> . declaracao_for KW_END_LINE
+    (8) declaracao -> . declaracao_while KW_END_LINE
+    (9) declaracao -> . declaracao_print
+    (10) declaracao -> . declaracao_ler KW_END_LINE
+    (11) declaracao -> . atribuicao KW_END_LINE
+    (12) declaracao -> . declaracao_variavel_sem_valores KW_END_LINE
+    (13) declaracao -> . expressao_booleana KW_END_LINE
+    (14) declaracao -> . declaracao_funcao KW_END_LINE
+    (15) declaracao -> . retorna KW_END_LINE
+    (16) expressao -> . expressao OP_ADD expressao
+    (17) expressao -> . expressao OP_SUB expressao
+    (18) expressao -> . expressao OP_MUL expressao
+    (19) expressao -> . expressao OP_DIV expressao
+    (20) expressao -> . expressao OP_EXP expressao
+    (21) expressao -> . OP_INC ID
+    (22) expressao -> . OP_DEC ID
+    (23) expressao -> . KW_INT
+    (24) expressao -> . KW_FLOAT
+    (25) expressao -> . KW_STRING
+    (26) expressao -> . boolean
+    (27) expressao -> . expressao_booleana
+    (28) expressao -> . ID
+    (43) expressao -> . PAR_OPEN expressao PAR_CLOSE
+    (56) expressao -> . ID KW_FUNC_OPEN_ARGS parametros
+    (48) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_CLOSE
+    (49) declaracao_if -> . KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE
+    (52) declaracao_for -> . KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE
+    (53) declaracao_while -> . KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE
+    (50) declaracao_print -> . KW_PRINT parametros KW_END_LINE
+    (51) declaracao_ler -> . KW_INPUT ID
+    (38) atribuicao -> . ID OP_ATRIB expressao
+    (39) atribuicao -> . atribuicao VIRGULA atribuicao
+    (40) declaracao_variavel_sem_valores -> . tipo ID
+    (29) expressao_booleana -> . expressao OP_LOG_BT_E expressao
+    (30) expressao_booleana -> . expressao OP_LOG_LT_E expressao
+    (31) expressao_booleana -> . expressao OP_LOG_EQUAL expressao
+    (32) expressao_booleana -> . expressao OP_LOG_DIFF expressao
+    (33) expressao_booleana -> . expressao OP_LOG_LT expressao
+    (34) expressao_booleana -> . expressao OP_LOG_BT expressao
+    (35) expressao_booleana -> . expressao OP_LOG_OR expressao
+    (54) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE
+    (55) declaracao_funcao -> . KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE
+    (57) retorna -> . KW_RETURN expressao
+    (36) boolean -> . TRUE
+    (37) boolean -> . FALSE
+    (44) tipo -> . KW_INT
+    (45) tipo -> . KW_BOOLEAN
+    (46) tipo -> . KW_FLOAT
+    (47) tipo -> . KW_STRING
+
+    OP_INC          shift and go to state 15
+    OP_DEC          shift and go to state 17
+    KW_INT          shift and go to state 18
+    KW_FLOAT        shift and go to state 19
+    KW_STRING       shift and go to state 20
+    ID              shift and go to state 16
+    PAR_OPEN        shift and go to state 22
+    KW_IF           shift and go to state 23
+    KW_FOR_OPEN     shift and go to state 24
+    KW_WHILE        shift and go to state 25
+    KW_PRINT        shift and go to state 26
+    KW_INPUT        shift and go to state 27
+    KW_FUNCTION     shift and go to state 29
+    KW_RETURN       shift and go to state 30
+    TRUE            shift and go to state 31
+    FALSE           shift and go to state 32
+    KW_BOOLEAN      shift and go to state 33
+
+    expressao                      shift and go to state 4
+    lista_declaracoes              shift and go to state 116
+    declaracao                     shift and go to state 3
+    declaracao_if                  shift and go to state 5
+    declaracao_for                 shift and go to state 6
+    declaracao_while               shift and go to state 7
+    declaracao_print               shift and go to state 8
+    declaracao_ler                 shift and go to state 9
+    atribuicao                     shift and go to state 10
+    declaracao_variavel_sem_valores shift and go to state 11
+    expressao_booleana             shift and go to state 12
+    declaracao_funcao              shift and go to state 13
+    retorna                        shift and go to state 14
+    boolean                        shift and go to state 21
+    tipo                           shift and go to state 28
+
+state 112
+
+    (53) declaracao_while -> KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 53 (declaracao_while -> KW_WHILE expressao_booleana FACA lista_declaracoes KW_CLOSE .)
+
+
+state 113
+
+    (54) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 54 (declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN lista_declaracoes KW_CLOSE .)
+
+
+state 114
+
+    (55) declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 55 (declaracao_funcao -> KW_FUNCTION ID KW_FUNC_OPEN_ARGS lista_declaracoes KW_CLOSE .)
+
+
+state 115
+
+    (49) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes . KW_CLOSE
+
+    KW_CLOSE        shift and go to state 117
+
+
+state 116
+
+    (52) declaracao_for -> KW_FOR_OPEN ID EM expressao FACA lista_declaracoes . KW_CLOSE
+
+    KW_CLOSE        shift and go to state 118
+
+
+state 117
+
+    (49) declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 49 (declaracao_if -> KW_IF expressao_booleana KW_IF_OPEN lista_declaracoes KW_ELSE lista_declaracoes KW_CLOSE .)
+
+
+state 118
+
+    (52) declaracao_for -> KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE .
+
+    KW_END_LINE     reduce using rule 52 (declaracao_for -> KW_FOR_OPEN ID EM expressao FACA lista_declaracoes KW_CLOSE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for KW_END_LINE in state 12 resolved as shift
+WARNING: shift/reduce conflict for OP_ADD in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_SUB in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_MUL in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_DIV in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_EXP in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT_E in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT_E in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_EQUAL in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_DIFF in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_OR in state 74 resolved as shift
+WARNING: shift/reduce conflict for OP_ADD in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_SUB in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_MUL in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_DIV in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_EXP in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT_E in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT_E in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_EQUAL in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_DIFF in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_OR in state 86 resolved as shift
+WARNING: shift/reduce conflict for OP_ADD in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_SUB in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_MUL in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_DIV in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_EXP in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT_E in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT_E in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_EQUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_DIFF in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_LT in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_BT in state 90 resolved as shift
+WARNING: shift/reduce conflict for OP_LOG_OR in state 90 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 91 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 93 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 106 resolved as shift
